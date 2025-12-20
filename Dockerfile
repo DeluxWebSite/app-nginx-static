@@ -11,6 +11,5 @@ RUN chown -R nginx:nginx /var/www &&\
   chmod -R 644 /var/www/html/*
 
 EXPOSE 80
-EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]

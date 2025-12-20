@@ -1,0 +1,4 @@
+docker tag local-image:tagname new-repo:tagname
+docker push new-repo:tagname
+docker push sergeymeljnick78/myapp:tagname
+https://hub.docker.com/repository/docker/sergeymeljnick78/myapp/tags
