@@ -12,4 +12,4 @@ RUN chown -R nginx:nginx /var/www &&\
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+# CMD ["nginx", "-g", "daemon off;"]
