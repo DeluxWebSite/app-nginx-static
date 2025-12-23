@@ -11,7 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Получение кода из GitHub
-                git branch: 'main', url: 'https://github.com/DeluxWebSite/app-nginx-static.git'
+                git branch: 'master', url: 'https://github.com/DeluxWebSite/app-nginx-static.git'
             }
         }
 
