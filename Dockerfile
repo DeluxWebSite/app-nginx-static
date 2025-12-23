@@ -1,7 +1,7 @@
 FROM nginx:1.29.4-alpine-slim
 
 LABEL maintainer="Sergey Melnick"
-LABEL version="1.1"
+LABEL version="1.2"
 
 COPY nginx.conf /etc/nginx/
 COPY bp.jpeg /var/www/html/
