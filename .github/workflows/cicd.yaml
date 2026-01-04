@@ -3,9 +3,9 @@ name: melnik-diplom
 on:
   push:
     branches:
-      - main
+      - master
     tags:
-      - 'v*'
+      - "v*"
 
 env:
   IMAGE_TAG: sergeymeljnick78/myapp
@@ -46,7 +46,7 @@ jobs:
   deploy:
     needs: build-and-push
     name: Deploy to Kubernetes
-    if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/tags/v')
+    if: startsWith(github.ref, 'refs/heads/master') || startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -55,7 +55,7 @@ jobs:
       - name: Set up Kubernetes
         uses: azure/setup-kubectl@v4
         with:
-          version: 'v1.31.0'
+          version: "v1.31.0"
 
       - name: Extract version from commit messages
         run: |
@@ -69,20 +69,12 @@ jobs:
 
       - name: Replace image tag in deployment.yaml
         if: env.DEPLOY == 'false'
-       
+
         run: |
           sed -i "s|image: sergeymeljnick78/myapp:.*|image: ${{ env.IMAGE_TAG }}|" ./deployment.yaml
         env:
           IMAGE_TAG: sergeymeljnick78/myapp:${{ env.VERSION }}
-      
-      - name: Create kubeconfig
-        run: |
-          mkdir -p $HOME/.kube/
-      - name: Authenticate to Kubernetes cluster
-        env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
-        run: |
-          echo "${KUBECONFIG}" > ${HOME}/.kube/config
+
       - name: Apply Kubernetes manifests
         run: |
           kubectl apply -f ./deployment.yaml
