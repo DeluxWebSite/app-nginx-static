@@ -34,5 +34,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      nodePort: 31001
+      nodePort: 31080
   type: NodePort
