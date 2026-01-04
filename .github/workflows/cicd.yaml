@@ -75,6 +75,14 @@ jobs:
         env:
           IMAGE_TAG: sergeymeljnick78/myapp:${{ env.VERSION }}
 
+      - name: Create kubeconfig
+        run: |
+          mkdir -p $HOME/.kube/
+      - name: Authenticate to Kubernetes cluster
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+        run: |
+          echo "${KUBECONFIG}" > ${HOME}/.kube/config
       - name: Apply Kubernetes manifests
         run: |
-          kubectl apply -f deployment.yaml --validate=false
+          kubectl apply -f ./deployment.yaml
