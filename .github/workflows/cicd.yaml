@@ -55,7 +55,7 @@ jobs:
       - name: Set up Kubernetes
         uses: azure/setup-kubectl@v4
         with:
-          version: "v1.31.0"
+          version: "v4.0.1"
 
       - name: Extract version from commit messages
         run: |
