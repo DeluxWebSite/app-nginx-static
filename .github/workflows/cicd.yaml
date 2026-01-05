@@ -86,4 +86,4 @@ jobs:
           echo "${KUBECONFIG}" > ${HOME}/.kube/config
       - name: Apply Kubernetes manifests
         run: |
-          kubectl apply -f ./deployment.yaml --validate=false
+          kubectl --insecure-skip-tls-verify apply -f ./deployment.yaml --validate=false
